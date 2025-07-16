@@ -11,6 +11,7 @@ services:
     links:
       - db
       - redis
+    restart: always
 
   apidebug:
     build: 
@@ -23,6 +24,7 @@ services:
     privileged: true
     links:
       - phpapi
+    restart: always
 
   db:
     image: mysql:5.7.17
@@ -36,6 +38,7 @@ services:
       MYSQL_DATABASE: miniquest
       MYSQL_USER: miniquest
       MYSQL_PASSWORD: miniquest
+    restart: always
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -50,6 +53,7 @@ services:
       - 5555:80
     volumes:
       - /sessions
+    restart: always
 
   redis:
     image: "redis:latest"
@@ -57,3 +61,5 @@ services:
       - "6379:6379"
     volumes:
       - ".redis_data:/data"
+    restart: always
+
